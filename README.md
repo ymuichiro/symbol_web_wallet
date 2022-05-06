@@ -1,0 +1,2 @@
+# symbol_webapp_react_boilerplate
+Symbolブロックチェーンを利用したWebアプリ開発のボイラープレートです
