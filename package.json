@@ -19,6 +19,7 @@
     "indexeddb_wrapper_far": "^0.0.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-qr-reader": "2.2.1",
     "react-router-dom": "6",
     "react-scripts": "5.0.1",
     "recoil": "^0.7.2",
@@ -53,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-qr-reader": "^2.1.4",
     "babel-plugin-root-import": "^6.6.0",
     "customize-cra": "^1.0.0",
     "react-app-rewired": "^2.2.1"

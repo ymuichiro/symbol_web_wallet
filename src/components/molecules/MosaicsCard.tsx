@@ -1,13 +1,13 @@
-import Card from "@mui/material/Card/Card";
 import CardContent from "@mui/material/CardContent/CardContent";
 import List from "@mui/material/List/List";
 import ListItem from "@mui/material/ListItem/ListItem";
 import ListItemText from "@mui/material/ListItemText/ListItemText";
 import Typography from "@mui/material/Typography/Typography";
 import { MAIN_NET_CURRENCY_NAME, MAIN_NET_CURRENCY_MOSAICID } from "../../utils/constant";
+import { Card } from "../atom/Card";
 
 export function MosaicsCard(): JSX.Element {
-  return <Card style={{ marginTop: "1em", flexGrow: 1, overflow: "scroll" }}>
+  return <Card style={{ flexGrow: 1, overflow: "scroll" }}>
     <CardContent>
       <Typography variant="body2" fontWeight={"bold"}>
         Mosaic

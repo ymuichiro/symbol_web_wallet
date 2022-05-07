@@ -22,7 +22,10 @@ const TabButton = styled(Button)({
 export function TransactionsCard(): JSX.Element {
   return <Card style={{ height: "100%", maxHeight: "100%", width: "100%" }}>
     <CardContent>
-      <Typography variant="body2" fontWeight={"bold"}>Transactions</Typography>
+      <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+        <Typography variant="body2" fontWeight="bold" style={{ flexGrow: "1" }}>Transactions</Typography>
+        <Button size="small" variant="text">エクスプローラーを開く</Button>
+      </div>
     </CardContent>
     <CardContent style={{ paddingTop: "0px" }}>
       <ButtonGroup variant="text" color="primary" >
