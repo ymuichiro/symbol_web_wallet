@@ -10,6 +10,9 @@ import ArrowCircleUpOutlinedIcon from "@mui/icons-material/ArrowCircleUpOutlined
 import ArrowCircleDownOutlinedIcon from "@mui/icons-material/ArrowCircleDownOutlined";
 import Typography from "@mui/material/Typography/Typography";
 import IconButton from "@mui/material/IconButton/IconButton";
+import { QrCodeReader } from "../components/molecules/QRCodeReader";
+import { useState } from "react";
+import Button from "@mui/material/Button/Button";
 
 export function TopPage(): JSX.Element {
 
@@ -24,7 +27,16 @@ export function TopPage(): JSX.Element {
 }
 
 export function Mobile(): JSX.Element {
+  const [isOpenQRCamera, setIsOpenQRCamera] = useState<boolean>(false);
+  const [qrResult, setQrResult] = useState<any>({});
+
+  const clickOpenQrReader = () => {
+    setIsOpenQRCamera(true);
+  };
+
+
   return <Container maxWidth="md" style={{ paddingTop: "1em", paddingBottom: "10em" }}>
+    <Button onClick={clickOpenQrReader}>test</Button>
     <Grid container direction="column" spacing={3} >
       <Grid item>
         <CurrencyBalanceCard />
@@ -43,7 +55,7 @@ export function Mobile(): JSX.Element {
               <Typography variant="body1" align="center">送信</Typography>
             </div>
           </IconButton>
-          <IconButton>
+          <IconButton onClick={clickOpenQrReader}>
             <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
               <ArrowCircleUpOutlinedIcon fontSize="large" />
               <Typography variant="body1" align="center">QR読込</Typography>
@@ -55,6 +67,10 @@ export function Mobile(): JSX.Element {
         <MosaicsCard />
       </Grid>
     </Grid>
+    {isOpenQRCamera && <QrCodeReader onRead={e => {
+      setIsOpenQRCamera(false);
+      console.log(e);
+    }} setOpen={setIsOpenQRCamera} />}
   </Container >;
 }
 
