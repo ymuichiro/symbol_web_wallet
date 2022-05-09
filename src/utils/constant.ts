@@ -8,4 +8,7 @@ export const navigationPaths = {
   networkPage: "network",
   harvestPage: "harvest",
   notFound: "*",
+  recievePage: "recieve",
+  sendPage: "send",
+
 };
