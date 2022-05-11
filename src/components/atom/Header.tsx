@@ -14,6 +14,7 @@ import ListItem from "@mui/material/ListItem/ListItem";
 import SettingsEthernetIcon from "@mui/icons-material/SettingsEthernet";
 import AgricultureIcon from "@mui/icons-material/Agriculture";
 import KeyIcon from "@mui/icons-material/Key";
+import { useNavigate } from "react-router-dom";
 
 const drawerList = [
   {
@@ -44,6 +45,7 @@ const drawerList = [
 export function Header(): JSX.Element {
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const clickMenuButton = () => {
     setIsOpen(!isOpen);
@@ -82,7 +84,7 @@ export function Header(): JSX.Element {
           />
         </ListItem>
         {
-          drawerList.map((item, index) => <ListItemButton divider key={index.toString()} >
+          drawerList.map((item, index) => <ListItemButton divider key={index.toString()} onClick={() => navigate(item.path)} >
             <item.icon style={{ marginRight: "10px" }} />
             <ListItemText primary={item.title} primaryTypographyProps={{ fontWeight: "bold" }} />
           </ListItemButton>)

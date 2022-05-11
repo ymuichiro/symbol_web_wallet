@@ -8,8 +8,11 @@ import { AddressScripts } from "symbol_sdk_min/dist/Address";
 import { TransferTransactionDTO } from "symbol_sdk_min/dist/open_api/TransferTransactionDTO";
 import { UnresolvedMosaic } from "symbol_sdk_min/dist/open_api/UnresolvedMosaic";
 import { NamespaceScripts } from "symbol_sdk_min/dist/Namespace";
-import { MosaicScripts } from "symbol_sdk_min/dist/Mosaic";
+import { Mosaic, MosaicScripts } from "symbol_sdk_min/dist/Mosaic";
 import { AccountBalance } from "../type/AccountModels";
+import { SymbolQrScripts } from "symbol_sdk_min/dist/SymbolQr";
+import { NetworkType } from "symbol-sdk/dist/src/model/network/NetworkType";
+import { NetworkInfo } from "../type/NetworkModels";
 
 export class TransactionActions {
 
@@ -40,5 +43,13 @@ export class TransactionActions {
     }
 
     return { transactions: txs, page: tx.pagination };
+  }
+
+  /** Transaction受取用のQRコードを発行します */
+  static async getTransactionQR(address: string, mosaic: Mosaic[], message: string, { networkProperty, networkIdentifier, networkGenerationHashSeed }: NetworkInfo): Promise<string | undefined> {
+    const plainMessage = TransactionScripts.getPlainMessage(message);
+    const epochAdjustment = Number(networkProperty.network.epochAdjustment);
+    const transaction = TransactionScripts.createTransferTransaction(address, mosaic, epochAdjustment, networkIdentifier, plainMessage);
+    return SymbolQrScripts.getTransferTransactionQr(transaction, networkIdentifier, networkGenerationHashSeed).base64;
   }
 }

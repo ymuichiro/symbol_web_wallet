@@ -10,6 +10,7 @@ import { defaultUserIcon } from "../assets/defaultUserIcon";
 import { NodeInfo } from "symbol_sdk_min/dist/model/Node";
 import { NamespaceScripts } from "symbol_sdk_min/dist/Namespace";
 import { MosaicScripts } from "symbol_sdk_min/dist/Mosaic";
+import { SymbolQrScripts } from "symbol_sdk_min/dist/SymbolQr";
 import { MAIN_NET_CURRENCY_MOSAICID, MAIN_NET_CURRENCY_NAME, TEST_NET_CURRENCY_MOSAICID, TEST_NET_CURRENCY_NAME } from "../utils/constant";
 
 /** Abstract account operations */
@@ -82,4 +83,5 @@ export class AccountActions {
     await new AccountStorage("readwrite").addAccount(accountInfo);
     return accountInfo;
   }
+
 }
