@@ -1,11 +1,12 @@
 import FormControl from "@mui/material/FormControl/FormControl";
+import { InputBaseProps } from "@mui/material/InputBase/InputBase";
 import InputLabel from "@mui/material/InputLabel/InputLabel";
 import MenuItem from "@mui/material/MenuItem/MenuItem";
 import MuiSelect, { SelectChangeEvent } from "@mui/material/Select/Select";
 import { CSSProperties, Dispatch, SetStateAction } from "react";
 
 export type SelectItem = {
-  label: string;
+  label: string | undefined;
   value: string;
 };
 
@@ -16,6 +17,7 @@ type Props = {
   state: string;
   setState: Dispatch<SetStateAction<string>>;
   options: SelectItem[];
+  size: InputBaseProps["size"];
 };
 
 export function Select(props: Partial<Props>): JSX.Element {
@@ -26,7 +28,7 @@ export function Select(props: Partial<Props>): JSX.Element {
     }
   };
 
-  return <FormControl fullWidth>
+  return <FormControl fullWidth size={props.size}>
 
     {typeof props.label === "string" && <InputLabel >
       {props.label}

@@ -1,24 +1,20 @@
 import { useState } from "react";
-import Grid from "@mui/material/Grid/Grid";
 import { Header } from "../components/atom/Header";
 import { useTheme } from "@mui/material/styles";
 import { CurrencyBalanceCard } from "../components/molecules/CurrencyBalanceCard";
 import { MosaicsCard } from "../components/molecules/MosaicsCard";
 import { TransactionsCard } from "../components/molecules/TransactionsCard";
 import { QrCodeReader } from "../components/molecules/QRCodeReader";
-import { useNavigate } from "react-router-dom";
 import { PaymentActionCard } from "../components/molecules/PaymentActionCard";
-import useMediaQuery from "@mui/material/useMediaQuery/useMediaQuery";
 import { Container } from "../components/atom/Container";
+import Grid from "@mui/material/Grid/Grid";
+import useMediaQuery from "@mui/material/useMediaQuery/useMediaQuery";
 
 
 export function TopPage(): JSX.Element {
 
   const theme = useTheme();
-
   const [isOpenQRCamera, setIsOpenQRCamera] = useState<boolean>(false);
-  const [qrResult, setQrResult] = useState<any>({});
-  const navigation = useNavigate();
   const match = useMediaQuery(theme.breakpoints.up("lg"));
 
   return <>
@@ -37,7 +33,7 @@ export function TopPage(): JSX.Element {
         </Grid>
         {
           match && <Grid item xs={12} sm={12} md={12} lg={8} style={{ height: "100%" }}>
-            <TransactionsCard />
+            <TransactionsCard isSearch={false} />
           </Grid>
         }
       </Grid>

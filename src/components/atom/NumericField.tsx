@@ -1,4 +1,5 @@
 import TextField from "@mui/material/TextField/TextField";
+import { BaseTextFieldProps } from "@mui/material/TextField/TextField";
 import { CSSProperties } from "react";
 
 type P = {
@@ -9,6 +10,7 @@ type P = {
   required?: boolean;
   fullWidth?: boolean;
   placeholder?: string;
+  size?: BaseTextFieldProps["size"],
 };
 
 export function NumericField(props: P) {
@@ -31,6 +33,7 @@ export function NumericField(props: P) {
     placeholder={props.placeholder}
     label={props.label}
     style={props.style}
+    size={props.size}
     inputProps={{
       inputMode: "numeric",
       pattern: "[0-9]*"

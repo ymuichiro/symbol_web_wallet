@@ -51,7 +51,7 @@ export const QrCodeReader: FC<QrCodeReaderProps> = ({ onRead, setOpen }) => {
     return function cleanup() {
       mountedRef.current = false;
     };
-  }, [currentCamera]);
+  }, [currentCamera, onRead]);
 
 
   return <div style={{

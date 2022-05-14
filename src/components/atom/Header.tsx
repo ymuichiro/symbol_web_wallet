@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { navigationPaths } from "../../utils/constant";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -9,18 +11,22 @@ import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import WalletIcon from "@mui/icons-material/AccountBalanceWalletTwoTone";
-import { navigationPaths } from "../../utils/constant";
 import ListItem from "@mui/material/ListItem/ListItem";
 import SettingsEthernetIcon from "@mui/icons-material/SettingsEthernet";
 import AgricultureIcon from "@mui/icons-material/Agriculture";
 import KeyIcon from "@mui/icons-material/Key";
-import { useNavigate } from "react-router-dom";
+import ReceiptIcon from "@mui/icons-material/Receipt";
 
 const drawerList = [
   {
     title: "Wallet",
     icon: WalletIcon,
     path: navigationPaths.topPage,
+  },
+  {
+    title: "Transaction",
+    icon: ReceiptIcon,
+    path: navigationPaths.transactionsPage,
   },
   {
     title: "Network",
