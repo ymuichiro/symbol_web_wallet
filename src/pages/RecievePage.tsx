@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import CardContent from "@mui/material/CardContent/CardContent";
 import Grid from "@mui/material/Grid/Grid";
 import { Card } from "../components/atom/Card";
 import Typography from "@mui/material/Typography/Typography";
-import Container from "@mui/material/Container/Container";
 import TextField from "@mui/material/TextField/TextField";
 import { Header } from "../components/atom/Header";
 import Select from "@mui/material/Select/Select";
@@ -11,6 +10,7 @@ import MenuItem from "@mui/material/MenuItem/MenuItem";
 import Button from "@mui/material/Button/Button";
 import { useTheme } from "@mui/material/styles";
 import { CenteringBox } from "../components/atom/CenteringBox";
+import { Container } from "../components/atom/Container";
 
 const SAMPLE_ADDRESSES = [
   "xxxx-xxxx-xxxx-xxxx-xxx1",
@@ -33,7 +33,7 @@ export function RecievePage(): JSX.Element {
   return <>
     <Header />
     <div style={{ height: "1em" }} />
-    <Container maxWidth="xl">
+    <Container>
       <Grid container spacing={2} direction="row">
         <Grid item xs={12} sm={12} md={4}>
           <CenteringBox>

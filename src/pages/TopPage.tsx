@@ -1,4 +1,4 @@
-import Container from "@mui/material/Container/Container";
+import { useState } from "react";
 import Grid from "@mui/material/Grid/Grid";
 import { Header } from "../components/atom/Header";
 import { useTheme } from "@mui/material/styles";
@@ -6,10 +6,10 @@ import { CurrencyBalanceCard } from "../components/molecules/CurrencyBalanceCard
 import { MosaicsCard } from "../components/molecules/MosaicsCard";
 import { TransactionsCard } from "../components/molecules/TransactionsCard";
 import { QrCodeReader } from "../components/molecules/QRCodeReader";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PaymentActionCard } from "../components/molecules/PaymentActionCard";
 import useMediaQuery from "@mui/material/useMediaQuery/useMediaQuery";
+import { Container } from "../components/atom/Container";
 
 
 export function TopPage(): JSX.Element {
@@ -24,7 +24,7 @@ export function TopPage(): JSX.Element {
   return <>
     <Header />
     <div style={{ height: "1em" }} />
-    <Container maxWidth={"xl"}>
+    <Container >
       <Grid container direction="row" spacing={2} style={{ height: "90vh" }}>
         <Grid item xs={12} sm={12} md={12} lg={4} style={{ height: "100%" }}>
           <div style={{ height: "100%", display: "flex", flexDirection: "column" }}>

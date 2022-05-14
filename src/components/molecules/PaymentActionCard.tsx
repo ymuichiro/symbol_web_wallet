@@ -22,14 +22,14 @@ export function PaymentActionCard(props: Props): JSX.Element {
 
   return <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around", marginTop: "3em", marginBottom: "3em" }}>
     <IconButton onClick={() => navigation(navigationPaths.recievePage)}>
-      <CenteringBox>
+      <CenteringBox >
         <ArrowCircleDownOutlinedIcon fontSize="large" />
         <Typography variant="body1" align="center">
           受取
         </Typography>
       </CenteringBox>
     </IconButton>
-    <IconButton>
+    <IconButton onClick={() => navigation(navigationPaths.sendPage)}>
       <CenteringBox>
         <ArrowCircleUpOutlinedIcon fontSize="large" />
         <Typography variant="body1" align="center">

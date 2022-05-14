@@ -8,6 +8,7 @@ type P = {
   style?: CSSProperties;
   required?: boolean;
   fullWidth?: boolean;
+  placeholder?: string;
 };
 
 export function NumericField(props: P) {
@@ -27,6 +28,7 @@ export function NumericField(props: P) {
     required={props.required}
     value={props.state}
     onChange={onChangeHandle}
+    placeholder={props.placeholder}
     label={props.label}
     style={props.style}
     inputProps={{

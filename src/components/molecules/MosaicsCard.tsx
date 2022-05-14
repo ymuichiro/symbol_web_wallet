@@ -6,8 +6,9 @@ import Typography from "@mui/material/Typography/Typography";
 import { MAIN_NET_CURRENCY_NAME, MAIN_NET_CURRENCY_MOSAICID } from "../../utils/constant";
 import { Card } from "../atom/Card";
 
+
 export function MosaicsCard(): JSX.Element {
-  return <Card style={{ flexGrow: 1, overflow: "scroll" }}>
+  return <Card style={{ flexGrow: 1, overflowY: "scroll" }}>
     <CardContent>
       <Typography variant="body2" fontWeight={"bold"}>
         Mosaic

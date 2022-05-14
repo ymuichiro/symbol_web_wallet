@@ -10,6 +10,7 @@ import { navigationPaths } from "./utils/constant";
 import { NotFound } from "./pages/NotFound";
 import { ShutterAnimation } from "./components/atom/ShutterAnimation";
 import { RecievePage } from "./pages/RecievePage";
+import { SendPage } from "./pages/SendPage";
 if (typeof Buffer === "undefined") global.Buffer = require("buffer").Buffer;
 
 const root = ReactDOM.createRoot(
@@ -35,7 +36,7 @@ function App(): JSX.Element {
             <Routes>
               <Route path={navigationPaths.topPage} element={<TopPage />} />
               <Route path={navigationPaths.notFound} element={<NotFound />} />
-              <Route path={navigationPaths.sendPage} element={<NotFound />} />
+              <Route path={navigationPaths.sendPage} element={<SendPage />} />
               <Route path={navigationPaths.recievePage} element={<RecievePage />} />
             </Routes>
           </BrowserRouter>
