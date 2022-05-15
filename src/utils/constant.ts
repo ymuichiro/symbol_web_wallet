@@ -11,4 +11,5 @@ export const navigationPaths = {
   recievePage: "/recieve",
   sendPage: "/send",
   transactionsPage: "/transactions",
+  settingsPage: "/settings"
 };

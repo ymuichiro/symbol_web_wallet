@@ -1,5 +1,5 @@
 import MuiCard from "@mui/material/Card";
-import { styled } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 export const Card = styled(MuiCard)({
   borderRadius: "10px",

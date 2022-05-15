@@ -1,7 +1,13 @@
-import { createTheme } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
 
-export const customTheme = createTheme({
+export type DisplayColorMode = "light" | "dark";
+
+type Props = {
+  mode: DisplayColorMode;
+};
+
+export const customTheme = (props: Props) => createTheme({
   palette: {
-    mode: "dark",
+    mode: props.mode,
   }
 });

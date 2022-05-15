@@ -12,10 +12,13 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import WalletIcon from "@mui/icons-material/AccountBalanceWalletTwoTone";
 import ListItem from "@mui/material/ListItem/ListItem";
-import SettingsEthernetIcon from "@mui/icons-material/SettingsEthernet";
 import AgricultureIcon from "@mui/icons-material/Agriculture";
 import KeyIcon from "@mui/icons-material/Key";
 import ReceiptIcon from "@mui/icons-material/Receipt";
+import { useRecoilState } from "recoil";
+import { displayColorModeAtom } from "../../store/mode";
+import { DisplayModeSwitch } from "./DisplayModeSwitch";
+import { useTheme } from "@mui/material/styles";
 
 const drawerList = [
   {
@@ -29,11 +32,6 @@ const drawerList = [
     path: navigationPaths.transactionsPage,
   },
   {
-    title: "Network",
-    icon: SettingsEthernetIcon,
-    path: navigationPaths.networkPage,
-  },
-  {
     title: "Auth",
     icon: KeyIcon,
     path: "",
@@ -42,16 +40,34 @@ const drawerList = [
     title: "Harvest",
     icon: AgricultureIcon,
     path: navigationPaths.harvestPage,
-  }
+  },
+  {
+    title: "Setting",
+    icon: SettingIcon,
+    path: navigationPaths.settingsPage,
+  },
 ];
+
+const LOGO_URI = {
+  dark: "https://github.com/ymuichiro/symbol_japan_forum/blob/main/logo/cc_0/Symbol_Logo_Wordmark_Light_BG.png?raw=true",
+  light: "https://github.com/ymuichiro/symbol_japan_forum/blob/main/logo/cc_0/Symbol_Logo_Wordmark_Dark_BG.png?raw=true"
+};
 
 /**
  * Application Static Top Header
  */
 export function Header(): JSX.Element {
 
+  const theme = useTheme();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [logo, setLogo] = useState<string>(theme.palette.mode === "dark" ? LOGO_URI.dark : LOGO_URI.light);
+  const [mode, setMode] = useRecoilState(displayColorModeAtom);
   const navigate = useNavigate();
+
+  const toggleDisplayMode = () => {
+    setMode(mode === "dark" ? "light" : "dark");
+    setLogo(mode === "dark" ? LOGO_URI.light : LOGO_URI.dark);
+  };
 
   const clickMenuButton = () => {
     setIsOpen(!isOpen);
@@ -68,25 +84,23 @@ export function Header(): JSX.Element {
           <MenuIcon />
         </IconButton>
         <img
-          src="https://github.com/ymuichiro/symbol_japan_forum/blob/main/logo/cc_0/Symbol_Logo_Wordmark_Light_BG.png?raw=true"
           height={"100%"}
           width={"150px"}
           alt="logo"
+          src={logo}
         />
         <div style={{ flexGrow: 1 }} />
-        <IconButton size="large" edge="start" color="inherit" aria-label="menu">
-          <SettingIcon />
-        </IconButton>
+        <DisplayModeSwitch checked={mode === "light"} onClick={toggleDisplayMode} />
       </Toolbar>
     </AppBar>
     <Drawer anchor="left" open={isOpen} onClose={closeDrawer}>
       <List style={{ minWidth: "300px", maxWidth: "90vw" }}>
         <ListItem divider style={{ display: "flex", justifyContent: "center", width: "100%", padding: "1.7rem 0px 2rem 0px" }} >
           <img
-            src="https://github.com/ymuichiro/symbol_japan_forum/blob/main/logo/cc_0/Symbol_Logo_Wordmark_Light_BG.png?raw=true"
             height={"100%"}
             width={"150px"}
             alt="logo"
+            src={logo}
           />
         </ListItem>
         {

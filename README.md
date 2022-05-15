@@ -8,9 +8,8 @@ It was not possible to play the video. DOMException: The play() request was inte
 ```
 
 次
-- 受取、送信ページ開発
-- ウォレットページ一覧
-- トランザクションページ開発
+- ウォレット切り替えModalをSettingsTab内で
+- ライト、ダークモード切り替え
 - ハーベストページ開発
 - マルチシグページ開発
 - 各ページへSDK適用
