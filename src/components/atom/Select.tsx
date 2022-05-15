@@ -10,21 +10,21 @@ export type SelectItem = {
   value: string;
 };
 
-type Props = {
+type Props<T> = {
   label: string;
   fullWidth: boolean;
   style: CSSProperties;
-  state: string;
-  setState: Dispatch<SetStateAction<string>>;
+  state: T;
+  setState: Dispatch<SetStateAction<T>>;
   options: SelectItem[];
   size: InputBaseProps["size"];
 };
 
-export function Select(props: Partial<Props>): JSX.Element {
+export function Select<T>(props: Partial<Props<T>>): JSX.Element {
 
   const onChangeHandle = (e: SelectChangeEvent) => {
     if (props.setState !== undefined) {
-      props.setState(e.target.value);
+      props.setState(e.target.value as any);
     }
   };
 
@@ -38,7 +38,7 @@ export function Select(props: Partial<Props>): JSX.Element {
       fullWidth={props.fullWidth}
       label={props.label}
       style={props.style}
-      value={props.state}
+      value={props.state as any}
       onChange={onChangeHandle}
     >
       {

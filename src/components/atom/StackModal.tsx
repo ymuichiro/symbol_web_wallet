@@ -1,22 +1,31 @@
 import Card from "@mui/material/Card/Card";
-import CardContent from "@mui/material/CardContent/CardContent";
 import Modal from "@mui/material/Modal/Modal";
-import { FC } from "react";
+import Slide from "@mui/material/Slide/Slide";
+import { FC, ReactNode } from "react";
 
-export const StackModal: FC<{}> = () => {
+type Props = {
+  isOpen: boolean,
+  onClose: () => void,
+  children?: ReactNode,
+};
 
-  return <Modal open={true}>
-    <Card style={{
-      position: "absolute",
-      bottom: "0px",
-      width: "100%",
-      backgroundColor: "white",
-      borderBottomLeftRadius: "0px",
-      borderBottomRightRadius: "0px",
-    }}>
-      <CardContent>
+export const StackModal: FC<Props> = props => {
 
-      </CardContent>
-    </Card>
+  return <Modal open={props.isOpen} onClose={props.onClose} >
+    <Slide direction="up" in={true} mountOnEnter unmountOnExit>
+      <Card style={{
+        position: "absolute",
+        bottom: "0px",
+        width: "100%",
+        borderTopLeftRadius: "30px",
+        borderTopRightRadius: "30px",
+        borderBottomLeftRadius: "0px",
+        borderBottomRightRadius: "0px",
+        height: "80vh",
+        overflowY: "scroll",
+      }}>
+        {props.children}
+      </Card>
+    </Slide>
   </Modal>;
 };

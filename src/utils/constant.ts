@@ -13,3 +13,6 @@ export const navigationPaths = {
   transactionsPage: "/transactions",
   settingsPage: "/settings"
 };
+
+export const languages = ["Japan"] as const;
+export type Languages = typeof languages[number];

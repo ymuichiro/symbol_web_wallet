@@ -19,6 +19,7 @@ import { useRecoilState } from "recoil";
 import { displayColorModeAtom } from "../../store/mode";
 import { DisplayModeSwitch } from "./DisplayModeSwitch";
 import { useTheme } from "@mui/material/styles";
+import { SITE_LOGO_DARK, SITE_LOGO_LIGHT } from "../../assets/logo";
 
 const drawerList = [
   {
@@ -48,11 +49,6 @@ const drawerList = [
   },
 ];
 
-const LOGO_URI = {
-  dark: "https://github.com/ymuichiro/symbol_japan_forum/blob/main/logo/cc_0/Symbol_Logo_Wordmark_Light_BG.png?raw=true",
-  light: "https://github.com/ymuichiro/symbol_japan_forum/blob/main/logo/cc_0/Symbol_Logo_Wordmark_Dark_BG.png?raw=true"
-};
-
 /**
  * Application Static Top Header
  */
@@ -60,13 +56,13 @@ export function Header(): JSX.Element {
 
   const theme = useTheme();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [logo, setLogo] = useState<string>(theme.palette.mode === "dark" ? LOGO_URI.dark : LOGO_URI.light);
+  const [logo, setLogo] = useState<string>(theme.palette.mode === "dark" ? SITE_LOGO_DARK : SITE_LOGO_LIGHT);
   const [mode, setMode] = useRecoilState(displayColorModeAtom);
   const navigate = useNavigate();
 
   const toggleDisplayMode = () => {
     setMode(mode === "dark" ? "light" : "dark");
-    setLogo(mode === "dark" ? LOGO_URI.light : LOGO_URI.dark);
+    setLogo(mode === "dark" ? SITE_LOGO_LIGHT : SITE_LOGO_DARK);
   };
 
   const clickMenuButton = () => {

@@ -11,22 +11,26 @@ import ListItemText from "@mui/material/ListItemText/ListItemText";
 import ListItem from "@mui/material/ListItem/ListItem";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Tooltip from "@mui/material/Tooltip/Tooltip";
-import Modal from "@mui/material/Modal/Modal";
-import CardContent from "@mui/material/CardContent/CardContent";
 import { StackModal } from "../components/atom/StackModal";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { ToggleWallet } from "../components/modal/ToggleWallet";
+import { ToggleNetwork } from "../components/modal/ToggleNetwork";
+import { ToggleLanguage } from "../components/modal/ToggleLanguage";
 
 const ListItemStyled = styled(ListItemButton)({
   paddingTop: "1.5em",
   paddingBottom: "1.5em",
 });
 
-export function SettingsPage(): JSX.Element {
+enum ITEM {
+  NONE,
+  WALLET,
+  NETWORK,
+  LANGUAGE,
+}
 
-  /**
-   * 次ここから
-   * タブレットらいくな方が見栄えがいいかも
-   * リストアイテムでコラプスで開く？
-   */
+export function SettingsPage(): JSX.Element {
+  const [item, setItem] = useState<ITEM>(ITEM.NONE);
 
   return <>
     <Header />
@@ -38,7 +42,7 @@ export function SettingsPage(): JSX.Element {
             <Grid item xs={3} sm={3} md={12}>
               <Tooltip title="アバター切り替え">
                 <div style={{ position: "relative", width: "100%" }}>
-                  <img src={defaultUserIcon} width="100%" />
+                  <img src={defaultUserIcon} alt="user-icon" width="100%" />
                 </div>
               </Tooltip>
             </Grid>
@@ -56,15 +60,15 @@ export function SettingsPage(): JSX.Element {
               <ListItem divider>
                 <ListItemText primary="設定" primaryTypographyProps={{ fontWeight: "bold" }} />
               </ListItem>
-              <ListItemStyled divider >
+              <ListItemStyled divider onClick={() => setItem(ITEM.WALLET)}>
                 <ListItemText primary="ウォレット切り替え" secondary="xxxx-xxxx-xxxx-xxxx-xxxx" />
                 <ExpandMoreIcon fontSize="medium" color="secondary" />
               </ListItemStyled>
-              <ListItemStyled divider >
+              <ListItemStyled divider onClick={() => setItem(ITEM.NETWORK)} >
                 <ListItemText primary="ネットワーク切り替え" secondary="https://hogehogehoge.jp:3001" />
                 <ExpandMoreIcon fontSize="medium" color="secondary" />
               </ListItemStyled>
-              <ListItemStyled divider >
+              <ListItemStyled divider onClick={() => setItem(ITEM.LANGUAGE)}>
                 <ListItemText primary="言語切り替え" secondary="日本語" />
                 <ExpandMoreIcon fontSize="medium" color="secondary" />
               </ListItemStyled>
@@ -72,7 +76,30 @@ export function SettingsPage(): JSX.Element {
           </Card>
         </Grid>
       </Grid>
-      {/* <StackModal /> */}
+      {item !== ITEM.NONE && <ModalSelecter item={item} setItem={setItem} />}
     </Container>
   </>;
+}
+
+function ModalSelecter({ item, setItem }: { item: ITEM; setItem: Dispatch<SetStateAction<ITEM>>; }): JSX.Element {
+
+  const onCloseHandle = () => {
+    setItem(ITEM.NONE);
+  };
+
+  if (item === ITEM.WALLET) {
+    return <StackModal isOpen={true} onClose={onCloseHandle} >
+      <ToggleWallet />
+    </StackModal>;
+  } else if (item === ITEM.NETWORK) {
+    return <StackModal isOpen={true} onClose={onCloseHandle} >
+      <ToggleNetwork />
+    </StackModal>;
+  } else if (item === ITEM.LANGUAGE) {
+    return <StackModal isOpen={true} onClose={onCloseHandle} >
+      <ToggleLanguage onClose={onCloseHandle} />
+    </StackModal>;
+  } else {
+    return <></>;
+  }
 }

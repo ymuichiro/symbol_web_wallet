@@ -1,6 +1,7 @@
 import Modal from "@mui/material/Modal/Modal";
 import Grow from "@mui/material/Grow";
 import { useEffect, useState } from "react";
+import { SITE_LOGO_DARK } from "../../assets/logo";
 
 type P = {
   open: boolean,
@@ -18,10 +19,20 @@ export function ShutterAnimation(props: P): JSX.Element {
 
   return <>
     <Modal open={props.open}>
-      <div style={{ height: "100vh", width: "100vw", display: "flex", justifyContent: "center", alignItems: "center" }}>
-        <Grow in={isOpen} timeout={500}>
+      <div style={{
+        height: "100vh",
+        width: "100vw",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#212121",
+      }}>
+        <Grow
+          in={isOpen}
+          timeout={500}
+        >
           <img
-            src="https://github.com/ymuichiro/symbol_japan_forum/blob/main/logo/cc_0/Symbol_Logo_Wordmark_Light_BG.png?raw=true"
+            src={SITE_LOGO_DARK}
             width={"300px"}
             alt="logo"
           />
