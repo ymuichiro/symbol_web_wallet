@@ -21,14 +21,14 @@ import QrIcon from "@mui/icons-material/QrCode2TwoTone";
 import Contacts from "@mui/icons-material/Contacts";
 import IconButton from "@mui/material/IconButton/IconButton";
 
-const SAMPLE_ADDRESSES: SelectItem[] = [
+const SAMPLE_ADDRESSES: SelectItem<string>[] = [
   { label: "xxxx-xxxx-xxxx-xxxx-xxx1 Symbol/XYM 50", value: "xxxx-xxxx-xxxx-xxxx-xxx1" },
   { label: "xxxx-xxxx-xxxx-xxxx-xxx2 Symbol/XYM 50", value: "xxxx-xxxx-xxxx-xxxx-xxx2" },
   { label: "xxxx-xxxx-xxxx-xxxx-xxx3 Symbol/XYM 50", value: "xxxx-xxxx-xxxx-xxxx-xxx3" },
   { label: "xxxx-xxxx-xxxx-xxxx-xxx4 Symbol/XYM 50", value: "xxxx-xxxx-xxxx-xxxx-xxx4" },
 ];
 
-const SAMPLE_FEES: SelectItem[] = [
+const SAMPLE_FEES: SelectItem<string>[] = [
   { label: "高速 - 0.1xym", value: "fast" },
   { label: "平均 - 0.1xym", value: "average" },
   { label: "低速  - 0.1xym", value: "slow" },

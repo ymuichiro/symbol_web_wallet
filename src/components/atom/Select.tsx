@@ -5,9 +5,9 @@ import MenuItem from "@mui/material/MenuItem/MenuItem";
 import MuiSelect, { SelectChangeEvent } from "@mui/material/Select/Select";
 import { CSSProperties, Dispatch, SetStateAction } from "react";
 
-export type SelectItem = {
+export type SelectItem<T> = {
   label: string | undefined;
-  value: string;
+  value: T;
 };
 
 type Props<T> = {
@@ -16,7 +16,7 @@ type Props<T> = {
   style: CSSProperties;
   state: T;
   setState: Dispatch<SetStateAction<T>>;
-  options: SelectItem[];
+  options: SelectItem<T>[];
   size: InputBaseProps["size"];
 };
 
@@ -42,7 +42,7 @@ export function Select<T>(props: Partial<Props<T>>): JSX.Element {
       onChange={onChangeHandle}
     >
       {
-        props.options?.map((item, index) => <MenuItem key={index} value={item.value}>
+        props.options?.map((item, index) => <MenuItem key={index} value={item.value as any}>
           {item.label}
         </MenuItem>)
       }

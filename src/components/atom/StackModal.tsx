@@ -21,7 +21,7 @@ export const StackModal: FC<Props> = props => {
         borderTopRightRadius: "30px",
         borderBottomLeftRadius: "0px",
         borderBottomRightRadius: "0px",
-        height: "80vh",
+        height: "85vh",
         overflowY: "scroll",
       }}>
         {props.children}

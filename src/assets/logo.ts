@@ -9,3 +9,9 @@ export const SITE_LOGO_DARK
  */
 export const SITE_LOGO_LIGHT
   = "https://github.com/ymuichiro/symbol_japan_forum/blob/main/logo/cc_0/Symbol_Logo_Wordmark_Dark_BG.png?raw=true";
+
+/**
+ * symbol logo
+ */
+export const SYMBOL_LOGO
+  = "https://github.com/ymuichiro/symbol_japan_forum/blob/main/logo/cc_0/Symbol_Logo_White_BG.png?raw=true";
