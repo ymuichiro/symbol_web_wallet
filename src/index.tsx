@@ -29,7 +29,7 @@ function Navigation(): JSX.Element {
       <BrowserRouter>
         <Routes>
           <Route path={navigationPaths.topPage} element={<TopPage />} />
-          <Route path={navigationPaths.notFound} element={<NotFound />} />
+          {/* <Route path={navigationPaths.notFound} element={<NotFound />} /> */}
           <Route path={navigationPaths.sendPage} element={<SendPage />} />
           <Route path={navigationPaths.recievePage} element={<RecievePage />} />
           <Route path={navigationPaths.transactionsPage} element={<TransactionsPage />} />

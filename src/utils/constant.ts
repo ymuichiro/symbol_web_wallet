@@ -4,10 +4,10 @@ export const MAIN_NET_CURRENCY_NAME = "symbol.xym";
 export const TEST_NET_CURRENCY_NAME = "symbol.xym";
 
 export const navigationPaths = {
-  topPage: "/",
+  topPage: "*",
   networkPage: "/network",
   harvestPage: "/harvest",
-  notFound: "*",
+  // notFound: "*",
   recievePage: "/recieve",
   sendPage: "/send",
   transactionsPage: "/transactions",
