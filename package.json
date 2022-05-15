@@ -2,7 +2,7 @@
   "name": "symbol_webapp_react_boilderplate",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ymuichiro.github.io/symbol_web_wallet/",
+  "homepage": "https://ymuichiro.github.io",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
