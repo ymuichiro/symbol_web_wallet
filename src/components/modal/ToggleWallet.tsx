@@ -57,6 +57,9 @@ export function ToggleWallet(): JSX.Element {
             <TabPanel value={tab} index={0}>
               <WalletChangePanel networkType={networkType} />
             </TabPanel>
+            <TabPanel value={tab} index={1}>
+              <WalletCreatePanel />
+            </TabPanel>
           </Grid>
         </Grid>
       </Container>
@@ -151,4 +154,20 @@ export function WalletChangePanel(props: WalletChangePanelProps): JSX.Element {
       </ListItem>)}
     </List>
   </>;
+}
+
+export function WalletCreatePanel(): JSX.Element {
+  const [mode, setMode] = useState<"private_key" | "mnemonic">("private_key");
+
+  return <div style={{ marginTop: "1em" }}>
+    <Typography color="textSecondary" style={{ marginBottom: "1em" }}>
+      ウォレットの追加方法を選択してください。ブラウザにはニーモニックを保持していません。既存のニーモニックに対してアドレスの追加を行いたい場合は再度手元のニーモニックを以下へ登録して下さい。
+    </Typography>
+    <Select
+      label="生成方法"
+      state={mode}
+      setState={setMode}
+      options={[{ label: "秘密鍵", value: "private_key" }, { label: "ニーモニック", value: "mnemonic" }]}
+    />
+  </div>;
 }

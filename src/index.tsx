@@ -47,7 +47,7 @@ function App(): JSX.Element {
   useEffect(() => {
     setTimeout(() => {
       setRuned(true);
-    }, 1);
+    }, 3000);
   }, []);
 
   return <React.StrictMode>
