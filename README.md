@@ -9,7 +9,8 @@ It was not possible to play the video. DOMException: The play() request was inte
 
 次
 - ウォレット切り替えModalをSettingsTab内で
-- ライト、ダークモード切り替え
+- 色Themeの変更
+- ネットワーク切り替えページの作成
 - ハーベストページ開発
 - マルチシグページ開発
 - 各ページへSDK適用

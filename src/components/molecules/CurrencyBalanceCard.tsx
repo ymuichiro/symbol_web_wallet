@@ -1,12 +1,23 @@
+import { useState } from "react";
+import { NeonCard } from "../atom/Card";
+import { Address } from "symbol_sdk_min/dist/Address";
+import { Snackbar } from "../atom/Snackbar";
 import CardContent from "@mui/material/CardContent/CardContent";
 import IconButton from "@mui/material/IconButton/IconButton";
 import Typography from "@mui/material/Typography/Typography";
 import CopyIcon from "@mui/icons-material/CopyAllTwoTone";
-import { NeonCard } from "../atom/Card";
-import { Address } from "symbol_sdk_min/dist/Address";
+import { copyClipboard } from "../../utils/native";
 
 export function CurrencyBalanceCard(): JSX.Element {
+  const [isOpenSnack, setOpenSnack] = useState<boolean>(false);
+
+  const copyHandle = () => {
+    setOpenSnack(true);
+    copyClipboard(Address.createFromRawAddress("NARXCCAQZI6IZKCSVVIYGEYQ4PJYBNGVJETLQTQ").plain());
+  };
+
   return <NeonCard style={{ width: "100%" }}>
+    <Snackbar open={isOpenSnack} setOpen={setOpenSnack} duration={3000} message={"コピーしました"} />
     <CardContent>
       <Typography variant="body2" align="left" fontWeight="bold">
         Address
@@ -14,8 +25,8 @@ export function CurrencyBalanceCard(): JSX.Element {
       <Typography variant="body2" align="left" style={{ whiteSpace: "inherit", width: "100%", margin: "0px", display: "inline" }}>
         {Address.createFromRawAddress("NARXCCAQZI6IZKCSVVIYGEYQ4PJYBNGVJETLQTQ").pretty()}
       </Typography>
-      <IconButton style={{ padding: "0px 8px 0px 8px" }}>
-        <CopyIcon />
+      <IconButton size="small" style={{ padding: "0px 8px 0px 8px" }} onClick={copyHandle}>
+        <CopyIcon fontSize="small" />
       </IconButton>
     </CardContent>
     <CardContent>

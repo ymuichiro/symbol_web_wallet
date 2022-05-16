@@ -41,6 +41,6 @@ export function TopPage(): JSX.Element {
         setIsOpenQRCamera(false);
         console.log(e);
       }} setOpen={setIsOpenQRCamera} />}
-    </Container >;
+    </Container >
   </>;
 }
