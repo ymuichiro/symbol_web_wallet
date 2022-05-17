@@ -8,7 +8,6 @@ type Props = {
   setOpen: Dispatch<SetStateAction<boolean>>;
   message: string;
   duration: number;
-  children: ReactNode,
 };
 
 export const Snackbar: FC<Partial<Props>> = props => {

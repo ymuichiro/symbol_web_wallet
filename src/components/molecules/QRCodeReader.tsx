@@ -64,7 +64,8 @@ export const QrCodeReader: FC<QrCodeReaderProps> = ({ onRead, setOpen }) => {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    flexDirection: "column"
+    flexDirection: "column",
+    zIndex: theme.zIndex.modal,
   }}>
     <Typography variant="h6" style={{ marginBottom: "1em", width: "90%", maxWidth: "1000px" }} fontWeight="bold" align="center">
       QRコードを読み込んでください

@@ -1,31 +1,30 @@
-import Card from "@mui/material/Card/Card";
-import Modal from "@mui/material/Modal/Modal";
-import Slide from "@mui/material/Slide/Slide";
-import { FC, ReactNode } from "react";
+import { Dispatch, ReactNode, SetStateAction, useState } from "react";
+import { SwipeableDrawer } from "@mui/material";
 
 type Props = {
-  isOpen: boolean,
-  onClose: () => void,
-  children?: ReactNode,
+  children?: ReactNode;
+  open: boolean;
+  onClose: (event: React.SyntheticEvent<{}, Event>) => void;
 };
 
-export const StackModal: FC<Props> = props => {
 
-  return <Modal open={props.isOpen} onClose={props.onClose} >
-    <Slide direction="up" in={true} mountOnEnter unmountOnExit>
-      <Card style={{
-        position: "absolute",
-        bottom: "0px",
-        width: "100%",
-        borderTopLeftRadius: "30px",
-        borderTopRightRadius: "30px",
-        borderBottomLeftRadius: "0px",
-        borderBottomRightRadius: "0px",
+export function StackModal(props: Props): JSX.Element {
+
+  return <SwipeableDrawer
+    anchor="bottom"
+    disableSwipeToOpen
+    onOpen={() => { }}
+    open={props.open}
+    onClose={props.onClose}
+    PaperProps={{
+      style: {
+        borderTopRightRadius: "10px",
+        borderTopLeftRadius: "10px",
         height: "85vh",
-        overflowY: "scroll",
-      }}>
-        {props.children}
-      </Card>
-    </Slide>
-  </Modal>;
-};
+      }
+    }}
+  >
+    {props.children}
+  </SwipeableDrawer>;
+
+}

@@ -14,13 +14,27 @@ import Tabs from "@mui/material/Tabs/Tabs";
 import Typography from "@mui/material/Typography/Typography";
 import IconButton from "@mui/material/IconButton/IconButton";
 import LanguageIcon from "@mui/icons-material/Language";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import QrCodeIcon from "@mui/icons-material/QrCode2TwoTone";
 import Tooltip from "@mui/material/Tooltip/Tooltip";
 import ListItem from "@mui/material/ListItem/ListItem";
 import CheckIcon from "@mui/icons-material/Check";
+import { CopyIconButton } from "../atom/CopyIconButton";
+import { Snackbar } from "../atom/Snackbar";
+import CloseIcon from "@mui/icons-material/Close";
+import TextField from "@mui/material/TextField/TextField";
+import Button from "@mui/material/Button/Button";
+import InputAdornment from "@mui/material/InputAdornment/InputAdornment";
+import QrIcon from "@mui/icons-material/QrCode2TwoTone";
+import { QrCodeReader } from "../molecules/QRCodeReader";
+import ListItemButton from "@mui/material/ListItemButton/ListItemButton";
+import Modal from "@mui/material/Modal/Modal";
+import { StackModal } from "../atom/StackModal";
 
-export function ToggleWallet(): JSX.Element {
+type Props = {
+  onClose: () => void;
+};
+
+export function ToggleWallet(props: Props): JSX.Element {
   const [networkType, setNetworkType] = useState<NetworkType>(NetworkType.TEST_NET);
   const [tab, setTab] = useState(0);
 
@@ -30,38 +44,47 @@ export function ToggleWallet(): JSX.Element {
 
   return <>
     <CardContent style={{ marginTop: "1.5em" }}>
-      <Container maxWidth="lg">
-        <Typography gutterBottom variant="h5" fontWeight="bold">ウォレット切替</Typography>
+      <Container maxWidth="lg" style={{ paddingLeft: 0, paddingRight: 0 }}>
+        <div style={{ display: "flex", alignItems: "flex-start" }}>
+          <Typography variant="h5" fontWeight="bold" style={{ flexGrow: 1 }}>
+            ウォレット切替
+          </Typography>
+          <IconButton onClick={props.onClose} style={{ padding: "0px 16px 0px 0px" }}>
+            <CloseIcon />
+          </IconButton>
+        </div>
       </Container>
     </CardContent>
-    <CardContent>
-      <Container maxWidth="lg">
-        <Grid container direction="column" spacing={3}>
-          <Grid item>
-            <Select
-              state={networkType}
-              setState={setNetworkType}
-              label={"ネットワークタイプ"}
-              options={[
-                { label: "メインネット", value: NetworkType.MAIN_NET },
-                { label: "テストネット", value: NetworkType.TEST_NET },
-              ]}
-            />
-          </Grid>
-          <Grid item>
-            <Tabs value={tab} onChange={handleTabChange}>
-              <Tab label="切り替え" />
-              <Tab label="新規作成" />
-              <Tab label="削除（非表示）" />
-            </Tabs>
-            <TabPanel value={tab} index={0}>
-              <WalletChangePanel networkType={networkType} />
-            </TabPanel>
-            <TabPanel value={tab} index={1}>
-              <WalletCreatePanel />
-            </TabPanel>
-          </Grid>
-        </Grid>
+    <CardContent style={{ marginTop: "1.5em" }}>
+      <Container maxWidth="lg" style={{ paddingLeft: 0, paddingRight: 0 }}>
+        <Select
+          variant="standard"
+          state={networkType}
+          setState={setNetworkType}
+          label={"ネットワークタイプ"}
+          options={[
+            { label: "メインネット", value: NetworkType.MAIN_NET },
+            { label: "テストネット", value: NetworkType.TEST_NET },
+          ]}
+        />
+      </Container>
+    </CardContent>
+    <CardContent style={{ paddingLeft: 0, paddingRight: 0 }}>
+      <Container maxWidth="lg" style={{ paddingLeft: 0, paddingRight: 0 }}>
+        <Tabs value={tab} onChange={handleTabChange}>
+          <Tab label="切り替え" />
+          <Tab label="新規作成" />
+          <Tab label="削除（非表示）" />
+        </Tabs>
+        <TabPanel value={tab} index={0}>
+          <WalletChangePanel networkType={networkType} />
+        </TabPanel>
+        <TabPanel value={tab} index={1}>
+          <WalletCreatePanel />
+        </TabPanel>
+        <TabPanel value={tab} index={2}>
+          <WalletDeletePanel />
+        </TabPanel>
       </Container>
     </CardContent>
   </>;
@@ -82,7 +105,9 @@ type WalletChangePanelProps = {
   networkType: NetworkType,
 };
 
-export function WalletChangePanel(props: WalletChangePanelProps): JSX.Element {
+export function WalletChangePanel(_: WalletChangePanelProps): JSX.Element {
+
+  const [isOpenSnack, setOpenSnack] = useState<boolean>(false);
 
   const MOCK = [
     {
@@ -104,6 +129,12 @@ export function WalletChangePanel(props: WalletChangePanelProps): JSX.Element {
   ];
 
   return <>
+    <Snackbar
+      duration={3000}
+      message="コピーしました"
+      open={isOpenSnack}
+      setOpen={setOpenSnack}
+    />
     <List>
       {MOCK.map((item, index) => <ListItem divider key={index}>
         <div>
@@ -115,7 +146,10 @@ export function WalletChangePanel(props: WalletChangePanelProps): JSX.Element {
         <Grid container direction="row" style={{ marginTop: "1em", marginBottom: "1em", marginLeft: "1em" }}>
           <Grid item xs={12} sm={12} md={8} lg={8}>
             <Typography variant="subtitle1" fontWeight="bold">{item.name}</Typography>
-            <Typography variant="subtitle1">{item.address}</Typography>
+            <div style={{ display: "flex" }}>
+              <Typography variant="subtitle1">{item.address}</Typography>
+              <CopyIconButton text={item.address} onClick={() => setOpenSnack(true)} />
+            </div>
             <Typography variant="subtitle2">マルチシグ：{item.multisig ? "有効" : "未設定"}</Typography>
           </Grid>
           <Grid item xs={12} sm={12} md={4} lg={4}>
@@ -127,16 +161,11 @@ export function WalletChangePanel(props: WalletChangePanelProps): JSX.Element {
           <Grid item xs={12}>
             <div style={{ marginTop: "10px", display: "flex" }}>
               <div style={{ flexGrow: 1 }}>
-                <Tooltip title="選択" style={{ marginLeft: "10px" }}>
+                {item.isActive || <Tooltip title="選択" style={{ marginLeft: "10px" }}>
                   <IconButton>
                     <CheckIcon />
                   </IconButton>
-                </Tooltip>
-                <Tooltip title="アドレスをコピー" style={{ marginLeft: "10px" }}>
-                  <IconButton>
-                    <ContentCopyIcon />
-                  </IconButton>
-                </Tooltip>
+                </Tooltip>}
                 <Tooltip title="アドレスのQRコードを表示" style={{ marginLeft: "10px" }}>
                   <IconButton>
                     <QrCodeIcon />
@@ -158,16 +187,117 @@ export function WalletChangePanel(props: WalletChangePanelProps): JSX.Element {
 
 export function WalletCreatePanel(): JSX.Element {
   const [mode, setMode] = useState<"private_key" | "mnemonic">("private_key");
+  const [isOpenQRCamera, setOpenQRCamera] = useState<boolean>(false);
+  const [isSubmitModalOpen, setSubmitModalOpen] = useState<boolean>(false);
 
-  return <div style={{ marginTop: "1em" }}>
-    <Typography color="textSecondary" style={{ marginBottom: "1em" }}>
-      ウォレットの追加方法を選択してください。ブラウザにはニーモニックを保持していません。既存のニーモニックに対してアドレスの追加を行いたい場合は再度手元のニーモニックを以下へ登録して下さい。
-    </Typography>
-    <Select
-      label="生成方法"
-      state={mode}
-      setState={setMode}
-      options={[{ label: "秘密鍵", value: "private_key" }, { label: "ニーモニック", value: "mnemonic" }]}
+  return <><Container>
+    <div style={{ marginTop: "1em" }}>
+      <Select
+        label="生成方法"
+        state={mode}
+        setState={setMode}
+        options={[{ label: "秘密鍵", value: "private_key" }, { label: "ニーモニック", value: "mnemonic" }]}
+      />
+    </div>
+    <div style={{ marginTop: "1em" }}>
+      <TextField label="アカウント名" placeholder="お好みの名称を登録" fullWidth style={{ marginBottom: "1em" }} />
+      <TextField
+        label={mode === "private_key" ? "秘密鍵" : "ニーモニック"}
+        placeholder="手入力、もしくはQRを読み込み"
+        fullWidth
+        style={{ marginBottom: "1em" }}
+        InputProps={{
+          endAdornment: <InputAdornment position="end">
+            <IconButton onClick={() => setOpenQRCamera(true)}><QrIcon /></IconButton>
+          </InputAdornment>
+        }} />
+      <Button color="primary" variant="contained" fullWidth style={{ maxWidth: "600px", marginBottom: "1em" }}>登録</Button>
+    </div>
+  </Container>
+    <StackModal open={isSubmitModalOpen} onClose={() => setSubmitModalOpen(false)}>
+      <Container>
+        <div style={{ marginTop: "1em" }}>
+          <div style={{ display: "flex" }}>
+            <Typography gutterBottom variant="h6" fontWeight="bold" style={{ flexGrow: 1 }}>
+              アドレス選択
+            </Typography>
+            <IconButton>
+              <CloseIcon />
+            </IconButton>
+          </div>
+          <List style={{ overflowY: "scroll" }}>
+            {["XXXX-XXXX-XXXX-XXXX", "XXXX-XXXX-XXXX-XXXX"].map((item, index) => <ListItemButton divider key={index.toString()}>
+              <div style={{ width: "100%" }}>
+                <Typography variant="subtitle1">{item}</Typography>
+                <div style={{ display: "flex" }}>
+                  <Typography variant="body1" style={{ flexGrow: 1 }}>残高</Typography>
+                  <Typography variant="body1" align="right">{(10000).toLocaleString()}</Typography>
+                </div>
+              </div>
+            </ListItemButton>)}
+          </List>
+        </div>
+      </Container>
+    </StackModal>
+    {isOpenQRCamera && <QrCodeReader setOpen={setOpenQRCamera} onRead={e => {
+      setOpenQRCamera(false);
+      console.log(e);
+    }} />}
+  </>;
+}
+
+export function WalletDeletePanel(): JSX.Element {
+
+  const [isOpenSnack, setOpenSnack] = useState<boolean>(false);
+
+  const MOCK = [
+    {
+      name: "メインウォレット",
+      address: "xxxx-xxxx-xxxx-xxxx-xxxx",
+      balance: 300000000,
+      multisig: true,
+      avatar: defaultUserIcon,
+      isActive: true,
+    },
+    ...new Array(20).fill("").map((_, index) => ({
+      name: "サブウォレット",
+      address: "xxxx-xxxx-xxxx-xxxx-xxx" + index.toString(),
+      balance: Math.random() * 1000 * index,
+      multisig: false,
+      avatar: defaultUserIcon,
+      isActive: false,
+    }))
+  ];
+
+  return <>
+    <Snackbar
+      duration={3000}
+      message="コピーしました"
+      open={isOpenSnack}
+      setOpen={setOpenSnack}
     />
-  </div>;
+    <List>
+      {MOCK.map((item, index) => <ListItemButton divider key={index}>
+        <div>
+          <ListItemAvatar style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <Avatar alt="wallet-icon" src={item.avatar} />
+          </ListItemAvatar>
+          <Typography align="center" style={{ marginTop: "10px" }}>{item.isActive ? "選択中" : ""}</Typography>
+        </div>
+        <Grid container direction="row" style={{ marginTop: "1em", marginBottom: "1em", marginLeft: "1em" }}>
+          <Grid item xs={12} sm={12} md={8} lg={8}>
+            <Typography variant="subtitle1" fontWeight="bold">{item.name}</Typography>
+            <Typography variant="subtitle1">{item.address}</Typography>
+            <Typography variant="subtitle2">マルチシグ：{item.multisig ? "有効" : "未設定"}</Typography>
+          </Grid>
+          <Grid item xs={12} sm={12} md={4} lg={4}>
+            <div style={{ height: "100%", display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
+              <img height="30px" width="30px" src={SYMBOL_LOGO} style={{ marginRight: "10px" }} />
+              <Typography align="right" variant="h6">{item.balance.toLocaleString()}</Typography>
+            </div>
+          </Grid>
+        </Grid>
+      </ListItemButton>)}
+    </List>
+  </>;
 }

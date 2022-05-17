@@ -16,10 +16,10 @@ import { NumericField } from "../atom/NumericField";
 import { Select } from "../atom/Select";
 import { useState } from "react";
 import { copyClipboard } from "../../utils/native";
-import CopyIcon from "@mui/icons-material/CopyAllTwoTone";
 import { Snackbar } from "../atom/Snackbar";
 import Button from "@mui/material/Button/Button";
 import { useTheme } from "@mui/material/styles";
+import { CopyIconButton } from "../atom/CopyIconButton";
 
 type Props = {
   isSearch: boolean;
@@ -151,9 +151,10 @@ export function TransactionsCard(props: Props): JSX.Element {
               <Grid item xs={12}>
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <Typography variant="subtitle1">{item.opponent}</Typography>
-                  <IconButton size="small" onClick={() => copyHandle(item.opponent)}>
-                    <CopyIcon fontSize="small" />
-                  </IconButton>
+                  <CopyIconButton
+                    text={item.hash}
+                    onClick={() => setOpenSnack(true)}
+                  />
                 </div>
                 <Typography variant="body2" color="textSecondary">{item.date}</Typography>
               </Grid>
@@ -170,9 +171,10 @@ export function TransactionsCard(props: Props): JSX.Element {
               <Grid item xs={12}>
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <Typography variant="subtitle1">{item.hash}</Typography>
-                  <IconButton size="small" onClick={() => copyHandle(item.hash)}>
-                    <CopyIcon fontSize="small" />
-                  </IconButton>
+                  <CopyIconButton
+                    text={item.hash}
+                    onClick={() => setOpenSnack(true)}
+                  />
                 </div>
               </Grid>
               <Grid item xs={12}>

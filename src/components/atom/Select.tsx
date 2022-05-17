@@ -18,6 +18,7 @@ type Props<T> = {
   setState: Dispatch<SetStateAction<T>>;
   options: SelectItem<T>[];
   size: InputBaseProps["size"];
+  variant: "standard" | "outlined" | "filled";
 };
 
 export function Select<T>(props: Partial<Props<T>>): JSX.Element {
@@ -35,6 +36,7 @@ export function Select<T>(props: Partial<Props<T>>): JSX.Element {
     </InputLabel>}
 
     <MuiSelect
+      variant={props.variant}
       fullWidth={props.fullWidth}
       label={props.label}
       style={props.style}
