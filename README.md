@@ -8,6 +8,7 @@ It was not possible to play the video. DOMException: The play() request was inte
 ```
 
 次
+- Twitter Cardを適用
 - authページを作成
 - 各ページへSDK適用
 - SDKのSW外だし版作成
