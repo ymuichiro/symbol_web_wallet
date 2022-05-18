@@ -8,7 +8,9 @@ It was not possible to play the video. DOMException: The play() request was inte
 ```
 
 次
-- ハーベストページ開発
+- authページを作成
 - 各ページへSDK適用
 - SDKのSW外だし版作成
 - DID機能実装
+
+Authページの要素
