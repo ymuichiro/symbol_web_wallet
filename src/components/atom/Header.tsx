@@ -74,7 +74,7 @@ export function Header(): JSX.Element {
   };
 
   return <>
-    <AppBar position="static" color="transparent" style={{ padding: "0px 10px 0px 10px", boxShadow: "0px 0px 0px 0px transparent inset" }}>
+    <AppBar color="default" position="fixed" style={{ padding: "0px 10px 0px 10px", boxShadow: "0px 0px 0px 0px transparent inset" }}>
       <Toolbar>
         <IconButton size="large" edge="start" color="inherit" aria-label="menu" style={{ marginRight: "20px" }} onClick={clickMenuButton}>
           <MenuIcon />

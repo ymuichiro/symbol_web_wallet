@@ -34,7 +34,6 @@ export function SettingsPage(): JSX.Element {
 
   return <>
     <Header />
-    <div style={{ height: "1em" }} />
     <Container>
       <Grid container direction="row" spacing={5}>
         <Grid item xs={12} sm={12} md={2}>

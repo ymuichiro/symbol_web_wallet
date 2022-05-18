@@ -8,7 +8,6 @@ It was not possible to play the video. DOMException: The play() request was inte
 ```
 
 次
-- Headerをfixedへ
 - ハーベストページ開発
 - 各ページへSDK適用
 - SDKのSW外だし版作成

@@ -58,7 +58,6 @@ export function SendPage(): JSX.Element {
 
   return <>
     <Header />
-    <div style={{ height: "1em" }} />
     <Container>
       <Grid container direction="row" spacing={2} style={{ height: match ? "90vh" : "auto", visibility: isOpenQRCamera ? "hidden" : "visible" }}>
         <Grid item xs={12} sm={12} md={12} lg={4} style={{ height: "100%" }}>

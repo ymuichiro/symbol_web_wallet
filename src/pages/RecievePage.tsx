@@ -32,7 +32,6 @@ export function RecievePage(): JSX.Element {
 
   return <>
     <Header />
-    <div style={{ height: "1em" }} />
     <Container>
       <Grid container spacing={2} direction="row">
         <Grid item xs={12} sm={12} md={4}>

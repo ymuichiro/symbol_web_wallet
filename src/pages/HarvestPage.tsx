@@ -1,5 +1,4 @@
 import CardContent from "@mui/material/CardContent/CardContent";
-import Container from "@mui/material/Container/Container";
 import { useTheme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography/Typography";
 import { Card } from "../components/atom/Card";
@@ -14,6 +13,7 @@ import ListItemButton from "@mui/material/ListItemButton/ListItemButton";
 import ListItemText from "@mui/material/ListItemText/ListItemText";
 import Button from "@mui/material/Button/Button";
 import ListItem from "@mui/material/ListItem/ListItem";
+import { Container } from "../components/atom/Container";
 
 export function HarvestPage(): JSX.Element {
 
@@ -21,8 +21,7 @@ export function HarvestPage(): JSX.Element {
 
   return <>
     <Header />
-    <div style={{ height: "1em" }} />
-    <Container maxWidth="lg" >
+    <Container  >
       <Card>
         <CardContent>
           <Typography gutterBottom variant="h6" fontWeight="bold">ハーベスト設定</Typography>

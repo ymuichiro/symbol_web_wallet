@@ -10,13 +10,14 @@ export function TransactionsPage(): JSX.Element {
 
   return <>
     <Header />
-    <div style={{ height: "1em" }} />
-    {isDesktop
-      ? <Container>
-        <TransactionsCard isSearch={true} />
-      </Container>
-      : <TransactionsCard isSearch={true} />
-    }
+    <Container>
+      {isDesktop
+        ? <Container>
+          <TransactionsCard isSearch={true} />
+        </Container>
+        : <TransactionsCard isSearch={true} />
+      }
+    </Container>
     <div style={{ height: "3em" }} />
   </>;
 
