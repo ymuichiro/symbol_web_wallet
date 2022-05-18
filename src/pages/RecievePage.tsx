@@ -43,6 +43,7 @@ export function RecievePage(): JSX.Element {
                   height="100%"
                   width="100%"
                   src={BASE64QR_SAMPLE}
+                  alt="qr_code"
                 />
               </CardContent>
             </Card>

@@ -1,4 +1,4 @@
-import { ReactNode, FC, Dispatch, SetStateAction } from "react";
+import { FC, Dispatch, SetStateAction } from "react";
 import MuiSnackbar from "@mui/material/Snackbar/Snackbar";
 import IconButton from "@mui/material/IconButton/IconButton";
 import CloseIcon from "@mui/icons-material/Close";

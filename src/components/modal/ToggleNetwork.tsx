@@ -8,7 +8,6 @@ import Typography from "@mui/material/Typography/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 import CableIcon from "@mui/icons-material/Cable";
 import TextField from "@mui/material/TextField/TextField";
-import Divider from "@mui/material/Divider/Divider";
 import InputAdornment from "@mui/material/InputAdornment/InputAdornment";
 import Button from "@mui/material/Button/Button";
 import CardContent from "@mui/material/CardContent/CardContent";

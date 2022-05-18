@@ -27,7 +27,6 @@ import InputAdornment from "@mui/material/InputAdornment/InputAdornment";
 import QrIcon from "@mui/icons-material/QrCode2TwoTone";
 import { QrCodeReader } from "../molecules/QRCodeReader";
 import ListItemButton from "@mui/material/ListItemButton/ListItemButton";
-import Modal from "@mui/material/Modal/Modal";
 import { StackModal } from "../atom/StackModal";
 
 type Props = {
@@ -154,7 +153,7 @@ export function WalletChangePanel(_: WalletChangePanelProps): JSX.Element {
           </Grid>
           <Grid item xs={12} sm={12} md={4} lg={4}>
             <div style={{ height: "100%", display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
-              <img height="30px" width="30px" src={SYMBOL_LOGO} style={{ marginRight: "10px" }} />
+              <img alt="symbol_logo" height="30px" width="30px" src={SYMBOL_LOGO} style={{ marginRight: "10px" }} />
               <Typography align="right" variant="h6">{item.balance.toLocaleString()}</Typography>
             </div>
           </Grid>
@@ -292,7 +291,7 @@ export function WalletDeletePanel(): JSX.Element {
           </Grid>
           <Grid item xs={12} sm={12} md={4} lg={4}>
             <div style={{ height: "100%", display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
-              <img height="30px" width="30px" src={SYMBOL_LOGO} style={{ marginRight: "10px" }} />
+              <img alt="symbol_logo" height="30px" width="30px" src={SYMBOL_LOGO} style={{ marginRight: "10px" }} />
               <Typography align="right" variant="h6">{item.balance.toLocaleString()}</Typography>
             </div>
           </Grid>

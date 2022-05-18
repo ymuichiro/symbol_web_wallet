@@ -15,7 +15,6 @@ import Divider from "@mui/material/Divider/Divider";
 import { NumericField } from "../atom/NumericField";
 import { Select } from "../atom/Select";
 import { useState } from "react";
-import { copyClipboard } from "../../utils/native";
 import { Snackbar } from "../atom/Snackbar";
 import Button from "@mui/material/Button/Button";
 import { useTheme } from "@mui/material/styles";
@@ -50,11 +49,6 @@ export function TransactionsCard(props: Props): JSX.Element {
     [setAddress, setFromHeight, setToHeight, setStatus, setType].forEach(setState => {
       setState("");
     });
-  };
-
-  const copyHandle = (text: string) => {
-    setOpenSnack(true);
-    copyClipboard(text);
   };
 
   return <Card style={{ height: "100%", maxHeight: "100%", width: "100%" }}>

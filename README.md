@@ -8,9 +8,8 @@ It was not possible to play the video. DOMException: The play() request was inte
 ```
 
 次
-- ネットワーク切り替えページの作成
+- Headerをfixedへ
 - ハーベストページ開発
-- マルチシグページ開発
 - 各ページへSDK適用
 - SDKのSW外だし版作成
 - DID機能実装

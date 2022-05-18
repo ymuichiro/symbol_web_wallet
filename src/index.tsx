@@ -15,6 +15,7 @@ import { TransactionsPage } from "./pages/TransactionsPage";
 import { SettingsPage } from "./pages/SettingsPage";
 import { RecoilRoot, useRecoilValue } from "recoil";
 import { displayColorModeAtom } from "./store/mode";
+import { HarvestPage } from "./pages/HarvestPage";
 if (typeof Buffer === "undefined") global.Buffer = require("buffer").Buffer;
 
 const root = ReactDOM.createRoot(
@@ -33,6 +34,7 @@ function Navigation(): JSX.Element {
           <Route path={navigationPaths.sendPage} element={<SendPage />} />
           <Route path={navigationPaths.recievePage} element={<RecievePage />} />
           <Route path={navigationPaths.transactionsPage} element={<TransactionsPage />} />
+          <Route path={navigationPaths.harvestPage} element={<HarvestPage />} />
           <Route path={navigationPaths.settingsPage} element={<SettingsPage />} />
         </Routes>
       </BrowserRouter>
