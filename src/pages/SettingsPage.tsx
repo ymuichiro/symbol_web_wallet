@@ -103,7 +103,7 @@ function ModalSelecter({ item, setItem }: { item: ITEM; setItem: Dispatch<SetSta
         if (item === ITEM.WALLET) {
           return <ToggleWallet onClose={onCloseHandle} />;
         } else if (item === ITEM.NETWORK) {
-          return <ToggleNetwork />;
+          return <ToggleNetwork onClose={onCloseHandle} />;
         } else if (item === ITEM.LANGUAGE) {
           return <ToggleLanguage onClose={onCloseHandle} />;
         } else {

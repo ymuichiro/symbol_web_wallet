@@ -8,7 +8,6 @@ It was not possible to play the video. DOMException: The play() request was inte
 ```
 
 次
-- ウォレット切り替えModalをSettingsTab内で
 - ネットワーク切り替えページの作成
 - ハーベストページ開発
 - マルチシグページ開発
