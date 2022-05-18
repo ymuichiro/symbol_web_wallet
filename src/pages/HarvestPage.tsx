@@ -37,7 +37,7 @@ export function HarvestPage(): JSX.Element {
                 委任中
               </Typography>
             </div>
-            <Typography style={{ overflowX: "scroll" }}>https://hogehogehogehogehogehogehogehogehogehogehogehoge.com:3001</Typography>
+            <Typography color="white" style={{ overflowX: "scroll" }}>https://hogehogehogehogehogehogehogehogehogehogehogehoge.com:3001</Typography>
           </div>
         </CardContent>
         <CardContent>

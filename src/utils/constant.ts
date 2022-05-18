@@ -9,9 +9,12 @@ export const navigationPaths = {
   harvestPage: "/harvest",
   // notFound: "*",
   recievePage: "/recieve",
+  decentralizeAuthPage: "/decentralize_auth",
+  credentialsPage: "/credentials",
   sendPage: "/send",
   transactionsPage: "/transactions",
-  settingsPage: "/settings"
+  settingsPage: "/settings",
+
 };
 
 export const languages = ["Japan"] as const;

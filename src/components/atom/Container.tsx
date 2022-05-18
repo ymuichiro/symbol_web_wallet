@@ -1,10 +1,11 @@
 import { FC, ReactNode } from "react";
 import MuiContainer from "@mui/material/Container/Container";
-import { useTheme } from "@mui/material/styles";
+import { Breakpoint, useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery/useMediaQuery";
 import { Toolbar } from "./Toolbar";
 
 type Props = {
+  maxWidth?: Breakpoint;
   children: ReactNode;
 };
 
@@ -12,7 +13,7 @@ export const Container: FC<Props> = props => {
   const isDesktop = useMediaQuery(useTheme().breakpoints.up("lg"));
 
 
-  return <MuiContainer maxWidth="xl">
+  return <MuiContainer maxWidth={props.maxWidth ? props.maxWidth : "xl"}>
     <Toolbar />
     <div style={{ height: "1em" }} />
     {props.children}

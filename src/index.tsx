@@ -16,6 +16,8 @@ import { SettingsPage } from "./pages/SettingsPage";
 import { RecoilRoot, useRecoilValue } from "recoil";
 import { displayColorModeAtom } from "./store/mode";
 import { HarvestPage } from "./pages/HarvestPage";
+import { DecentralizeAuthPage } from "./pages/DecentralizeAuthPage";
+import { CredentialsPage } from "./pages/CredentialsPage";
 if (typeof Buffer === "undefined") global.Buffer = require("buffer").Buffer;
 
 const root = ReactDOM.createRoot(
@@ -36,6 +38,8 @@ function Navigation(): JSX.Element {
           <Route path={navigationPaths.transactionsPage} element={<TransactionsPage />} />
           <Route path={navigationPaths.harvestPage} element={<HarvestPage />} />
           <Route path={navigationPaths.settingsPage} element={<SettingsPage />} />
+          <Route path={navigationPaths.decentralizeAuthPage} element={<DecentralizeAuthPage />} />
+          <Route path={navigationPaths.credentialsPage} element={<CredentialsPage />} />
         </Routes>
       </BrowserRouter>
     </CssBaseline>

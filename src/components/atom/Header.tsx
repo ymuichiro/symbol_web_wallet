@@ -20,6 +20,7 @@ import { displayColorModeAtom } from "../../store/mode";
 import { DisplayModeSwitch } from "./DisplayModeSwitch";
 import { useTheme } from "@mui/material/styles";
 import { SITE_LOGO_DARK, SITE_LOGO_LIGHT } from "../../assets/logo";
+import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 
 const drawerList = [
   {
@@ -33,9 +34,14 @@ const drawerList = [
     path: navigationPaths.transactionsPage,
   },
   {
-    title: "Auth",
+    title: "DecentralizeAuth",
     icon: KeyIcon,
-    path: "",
+    path: navigationPaths.decentralizeAuthPage,
+  },
+  {
+    title: "Credentials",
+    icon: AssignmentIndIcon,
+    path: navigationPaths.credentialsPage,
   },
   {
     title: "Harvest",
