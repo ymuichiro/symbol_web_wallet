@@ -4,16 +4,16 @@ export const MAIN_NET_CURRENCY_NAME = "symbol.xym";
 export const TEST_NET_CURRENCY_NAME = "symbol.xym";
 
 export const navigationPaths = {
-  topPage: "*",
-  networkPage: "/network",
-  harvestPage: "/harvest",
-  // notFound: "*",
-  recievePage: "/recieve",
-  decentralizeAuthPage: "/decentralize_auth",
-  credentialsPage: "/credentials",
-  sendPage: "/send",
-  transactionsPage: "/transactions",
-  settingsPage: "/settings",
+  topPage: "/symbol_web_wallet/",
+  networkPage: "/symbol_web_wallet/network",
+  harvestPage: "/symbol_web_wallet/harvest",
+  notFound: "*",
+  recievePage: "/symbol_web_wallet/recieve",
+  decentralizeAuthPage: "/symbol_web_wallet/decentralize_auth",
+  credentialsPage: "/symbol_web_wallet/credentials",
+  sendPage: "/symbol_web_wallet/send",
+  transactionsPage: "/symbol_web_wallet/transactions",
+  settingsPage: "/symbol_web_wallet/settings",
 
 };
 
